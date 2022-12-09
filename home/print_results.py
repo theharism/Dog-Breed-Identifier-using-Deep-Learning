@@ -74,15 +74,19 @@ def print_results(results_dic, results_stats_dic, model,
     for key in results_stats_dic:
         if key[0] == 'p':
             print(key + ": " + str(results_stats_dic[key]))
+    
+    if (print_incorrect_dogs and 
+        ( (results_stats_dic['n_correct_dogs'] + results_stats_dic['n_correct_notdogs'])
+          != results_stats_dic['n_images'] ) 
+       ):
+        print("\nINCORRECT Dog/NOT Dog Assignments:")   
         
-    if (print_incorrect_dogs and ( (results_stats_dic['n_correct_dogs'] + results_stats_dic['n_correct_notdogs']) != results_stats_dic['n_images'] ) ):
-        print("\nINCORRECT Dog/NOT Dog Assignments:")
-            # process through results dict, printing incorrectly classified dogs
         for key in results_dic:
+                
                 if results_dic[key][3] == 1 and results_dic[key][4] == 0:
-                    print(f'Real: {results_dic[key][0]}   Classified as: {results_dic[key][4]}')
+                        print(f'Real: {results_dic[key][0]}   Classified as: {results_dic[key][1]}')
                 if results_dic[key][3] == 0 and results_dic[key][4] == 1:
-                    print(f'Real: {results_dic[key][0]}   Classified as: {results_dic[key][3]}')
+                        print(f'Real: {results_dic[key][1]}   Classified as: {results_dic[key][0]}')
         
 
         

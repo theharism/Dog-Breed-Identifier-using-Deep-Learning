@@ -49,7 +49,7 @@ def get_pet_labels(image_dir):
     
     for i in range(0,len(filenames_list),1):
         if filenames_list[i][0] != '.' and results_dic.get(filenames_list[i]) == None:
-          label = filenames_list[i]
+          label = filenames_list[i].rsplit(".",1)[0]
           label_list = label.lower().split('_')
           final = ''
           for word in label_list:
